@@ -16,12 +16,7 @@
 
 package com.palantir.conjure.visitor;
 
-import com.palantir.conjure.spec.AliasDefinition;
-import com.palantir.conjure.spec.EnumDefinition;
-import com.palantir.conjure.spec.ObjectDefinition;
-import com.palantir.conjure.spec.TypeDefinition;
-import com.palantir.conjure.spec.TypeName;
-import com.palantir.conjure.spec.UnionDefinition;
+import com.palantir.conjure.spec.*;
 
 public final class TypeDefinitionVisitor {
 
@@ -58,6 +53,11 @@ public final class TypeDefinitionVisitor {
         @Override
         public TypeName visitUnion(UnionDefinition value) {
             return value.getTypeName();
+        }
+
+        @Override
+        public TypeName visitConstant(ConstantDefinition value) {
+            return null;
         }
 
         @Override
@@ -117,6 +117,11 @@ public final class TypeDefinitionVisitor {
         }
 
         @Override
+        public T visitConstant(ConstantDefinition value) {
+            return null;
+        }
+
+        @Override
         public T visitUnknown(String unknownType) {
             throw new IllegalStateException("Unknown type: " + unknownType);
         }
@@ -169,6 +174,11 @@ public final class TypeDefinitionVisitor {
         @Override
         public Boolean visitUnion(UnionDefinition _value) {
             return false;
+        }
+
+        @Override
+        public Boolean visitConstant(ConstantDefinition value) {
+            return null;
         }
 
         @Override
